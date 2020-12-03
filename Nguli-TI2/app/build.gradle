@@ -6,10 +6,10 @@ plugins {
 
 android {
     signingConfigs {
-        'Nguli-TI2' {
-            storeFile file('D:\\Tugas Dunia\\ITTP\\Kuliah ITTP\\Semester 5\\Pemrograman Perangkat Bergerak\\Tugas\\Android\\Nguli-TI2\\keystore.jks')
+        'nguli-ti2' {
+            storeFile file('D:\\Tugas Dunia\\ITTP\\Kuliah ITTP\\Semester 5\\Pemrograman Perangkat Bergerak\\Tugas\\Android\\TugasBesar\\Nguli-TI2\\keystore.jks')
             storePassword 'android'
-            keyAlias 'Nguli-TI2'
+            keyAlias 'nguli-ti2'
             keyPassword 'android'
         }
     }
