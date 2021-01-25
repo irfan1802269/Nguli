@@ -10,11 +10,11 @@
 
     <ProgressBar
         android:id="@+id/progressBar"
-        android:indeterminate="true"
+        style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:visibility="invisible"
-        style="?android:attr/progressBarStyleHorizontal"/>
+        android:indeterminate="true"
+        android:visibility="invisible" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -23,8 +23,8 @@
 
         <ImageView
             android:id="@+id/ivIcon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
             app:layout_constraintBottom_toTopOf="@+id/tvLogin"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -35,29 +35,56 @@
             android:id="@+id/tvLogin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="44dp"
-            android:layout_marginBottom="36dp"
+            android:layout_marginTop="25dp"
+            android:layout_marginBottom="25dp"
+            android:fontFamily="@font/pacifico_regular"
+            android:shadowColor="#8a795d"
+            android:shadowDx="9"
+            android:shadowDy="15"
+            android:shadowRadius="1.5"
             android:text="Login"
-            android:textSize="24sp"
-            app:layout_constraintBottom_toTopOf="@+id/inputEmail"
+            android:textSize="60sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/cvLogin"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/ivIcon" />
 
-        <EditText
-            android:id="@+id/inputPassword"
-            android:layout_width="0dp"
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cvLogin"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
-            android:ems="10"
-            android:hint="Password"
-            android:inputType="textPassword"
-            app:layout_constraintBottom_toTopOf="@+id/btnSign"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/inputEmail" />
+            android:layout_margin="16dp"
+            app:cardCornerRadius="4dp"
+            app:layout_constraintBottom_toTopOf="@id/btnSign"
+            app:layout_constraintTop_toBottomOf="@+id/tvLogin">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp">
+
+                <EditText
+                    android:id="@+id/inputEmail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Email"
+                    android:inputType="textEmailAddress"
+                    android:maxLines="1" />
+
+                <EditText
+                    android:id="@+id/inputPassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/inputEmail"
+                    android:layout_marginTop="3dp"
+                    android:hint="Password"
+                    android:inputType="textPassword"
+                    android:maxLines="1" />
+            </RelativeLayout>
+
+        </androidx.cardview.widget.CardView>
+
 
         <Button
             android:id="@+id/btnSign"
@@ -65,27 +92,19 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
+            android:elevation="2dp"
+            android:paddingTop="13dp"
+            android:paddingBottom="13dp"
             android:text="Sign In"
+            android:textSize="16dp"
+            android:textStyle="bold"
+            app:cornerRadius="15dp"
             app:layout_constraintBottom_toTopOf="@+id/tvTextAccount"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/inputPassword" />
+            app:layout_constraintTop_toBottomOf="@+id/cvLogin" />
 
-        <EditText
-            android:id="@+id/inputEmail"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
-            android:ems="10"
-            android:hint="Email"
-            android:inputType="textEmailAddress"
-            app:layout_constraintBottom_toTopOf="@+id/inputPassword"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvLogin" />
 
         <TextView
             android:id="@+id/tvSignUp"
@@ -128,6 +147,7 @@
             android:id="@+id/btnEmail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="@drawable/roundbtn"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/btnPhone"
             app:layout_constraintStart_toStartOf="@+id/tvConneting"
@@ -139,6 +159,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="118dp"
+            android:background="@drawable/roundbtn"
             app:layout_constraintBottom_toBottomOf="@+id/btnEmail"
             app:layout_constraintEnd_toEndOf="@+id/tvConneting"
             app:layout_constraintStart_toEndOf="@+id/btnEmail"
