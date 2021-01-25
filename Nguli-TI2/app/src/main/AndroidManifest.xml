@@ -16,7 +16,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Nguli">
-        <activity android:name=".SplashScreenActivity"></activity>
+
         <activity android:name=".SignUpActivity" />
         <activity android:name=".SignInActivity" />
         <!--
@@ -38,10 +38,12 @@
             android:name=".ScrollingActivity"
             android:label="@string/title_activity_scrolling"
             android:theme="@style/Theme.Nguli.NoActionBar" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity" />
+
+
+        <activity android:name=".SplashScreenActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
