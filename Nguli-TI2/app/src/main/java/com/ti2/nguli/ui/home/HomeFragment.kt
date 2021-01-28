@@ -7,8 +7,10 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.DataBindingUtil.setContentView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.squareup.picasso.Picasso
 import com.synnapps.carouselview.CarouselView
@@ -16,21 +18,35 @@ import com.synnapps.carouselview.ImageListener
 import com.ti2.nguli.MyData
 import com.ti2.nguli.R
 import com.ti2.nguli.adapter.GridMyDataAdapter
+import com.ti2.nguli.databinding.FragmentHomeBinding
 import kotlinx.android.synthetic.main.fragment_home.*
 
 
-class HomeFragment : Fragment() {
+class HomeFragment : Fragment(), View.OnClickListener {
     private val list = ArrayList<MyData>()
+    private lateinit var binding: FragmentHomeBinding
 
 
     // private lateinit var homeViewModel: HomeViewModel
     //private lateinit var viewPager2: ViewPager2
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding.btnCategory.setOnClickListener(this)
+        binding.btnBundle.setOnClickListener(this)
+        binding.btnVoucher.setOnClickListener(this)
+        binding.btnPencarian.setOnClickListener(this)
+    }
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_home, container, false)
+        binding = FragmentHomeBinding.inflate(inflater, container, false)
+        val view  = binding.root
+        return view
+
+        //return inflater.inflate(R.layout.fragment_home, container, false)
+
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -69,13 +85,21 @@ class HomeFragment : Fragment() {
         rv_mydata.adapter = gridMyDataAdapter
     }
 
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        (activity as AppCompatActivity).supportActionBar?.title = "NGULI"
-
-
-
+    override fun onClick(v: View?) {
+        when (v?.id) {
+            R.id.btn_category -> {
+                signOut()
+            }
+            R.id.btn_bundle -> {
+                sendEmailVerification()
+            }
+            R.id.btn_voucher -> {
+                sendEmailVerification()
+            }
+            R.id.btn_pencarian -> {
+                sendEmailVerification()
+            }
+        }
     }
 
 

@@ -1,103 +1,167 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     tools:context=".ui.home.HomeFragment">
 
-
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-
-        <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:app="http://schemas.android.com/apk/res-auto"
-            xmlns:tools="http://schemas.android.com/tools"
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:layout_marginBottom="20dp"
-            android:elevation="10dp"
-            android:orientation="vertical"
-            app:cardCornerRadius="15dp">
-
-            <ImageView
-                android:id="@+id/foto"
-                android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:layout_marginBottom="20dp"
-                android:background="@drawable/shape_rectangle"
-                android:scaleType="centerCrop"
-                app:srcCompat="@drawable/construct_2" />
-
-        </androidx.cardview.widget.CardView>
+        android:layout_height="match_parent">
 
 
         <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginBottom="20dp"
+                android:elevation="10dp"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/foto"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:layout_marginBottom="20dp"
+                    android:scaleType="centerCrop"
+                    app:srcCompat="@drawable/construct_2" />
+
+            </androidx.cardview.widget.CardView>
 
 
-            android:id="@+id/layout_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-
-            android:layout_gravity="center"
-            android:orientation="horizontal">
-
-            <ImageButton
-
-                android:id="@+id/btn_category"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:id="@+id/layout_button"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="20dp"
-                android:background="@drawable/shape_rectangle"
-                android:src="@drawable/ic_outline_shopping_cart_24"
-                android:text="Lihat" />
+                android:gravity="center"
+
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:id="@+id/btn_category"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:background="@drawable/shape_rectangle"
+                        android:padding="10dp"
+                        android:src="@drawable/ic_outline_shopping_cart_24" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Kategori" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/btn_bundle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
 
 
-            <ImageButton
-                android:id="@+id/btn_bundle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:background="@drawable/shape_rectangle"
+                        android:padding="10dp"
+                        android:src="@drawable/ic_baseline_format_paint_24" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Bundle" />
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:id="@+id/btn_voucher"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:background="@drawable/shape_rectangle"
+                        android:padding="10dp"
+                        android:src="@drawable/ic_baseline_card_giftcard_24" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Voucher" />
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:id="@+id/btn_pencarian"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:background="@drawable/shape_rectangle"
+                        android:padding="10dp"
+                        android:src="@drawable/ic_baseline_search_24" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Pencarian" />
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="20dp"
-                android:background="@drawable/shape_rectangle"
-                android:src="@drawable/ic_baseline_format_paint_24"
-                android:text="Lihat" />
+                android:text="Info"
+                android:textSize="20dp">
 
-            <ImageButton
-                android:id="@+id/btn_voucher"
+            </TextView>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_mydata"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="20dp"
-                android:background="@drawable/shape_rectangle"
-                android:src="@drawable/ic_baseline_card_giftcard_24"
-                android:text="Lihat" />
-
-            <ImageButton
-                android:id="@+id/btn_pencarian"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="20dp"
-                android:background="@drawable/shape_rectangle"
-                android:src="@drawable/ic_baseline_search_24"
-                android:text="Lihat" />
-
-
+                android:layout_height="match_parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/layout_button"
+                tools:listitem="list item" />
         </LinearLayout>
 
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_mydata"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="10dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/layout_button"
-            tools:listitem="list item" />
-    </LinearLayout>
-
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>

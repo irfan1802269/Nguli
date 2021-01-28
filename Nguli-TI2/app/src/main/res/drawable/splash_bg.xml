@@ -1,12 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:drawable="@color/main_color"/>
+    <item android:drawable="@color/main_color" />
 
-    <item android:gravity="center" android:width="100dp" android:height="100dp">
+    <item
+        android:bottom="12dp"
+        android:gravity="center"
+        android:left="12dp"
+        android:right="12dp"
+        android:top="12dp">
         <bitmap
-            android:gravity="fill_horizontal|fill_vertical"
-            android:src="@drawable/ic_logo_splashscreen"/>
+            android:gravity="center"
+            android:src="@drawable/ic_dashboard_black_24dp" />
     </item>
+
 
 </layer-list>

@@ -12,5 +12,9 @@
         android:fontStyle="normal"
         android:fontWeight="400"
         android:font="@font/poppins" />
+    <font
+        android:fontStyle="normal"
+        android:fontWeight="400"
+        android:font="@font/rambla" />
 
 </font-family>

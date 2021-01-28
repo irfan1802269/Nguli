@@ -35,7 +35,7 @@
         app:layout_constraintTop_toBottomOf="@+id/ivIcon" />
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/inputEmail"
+        android:id="@+id/txtinputEmail"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
@@ -50,7 +50,7 @@
         app:layout_constraintTop_toBottomOf="@+id/tvCreateAccount"
         >
         <EditText
-
+            android:id="@+id/inputEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Email"
@@ -60,7 +60,7 @@
 
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/inputPassword"
+        android:id="@+id/txtinputPassword"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
 
@@ -71,10 +71,10 @@
         android:layout_marginEnd="16dp"
         android:ems="10"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/inputEmail"
+        app:layout_constraintTop_toBottomOf="@+id/txtinputEmail"
         >
         <EditText
-
+            android:id="@+id/inputPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Password"
@@ -94,6 +94,6 @@
         app:cornerRadius="15dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/inputPassword" />
+        app:layout_constraintTop_toBottomOf="@+id/txtinputPassword" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

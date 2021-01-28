@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "919080875027",
+    "project_id": "nguliapps",
+    "storage_bucket": "nguliapps.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:919080875027:android:4694158b8dde1741a43be6",
+        "android_client_info": {
+          "package_name": "com.ti2.nguli"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "919080875027-fjh0ve1sdi6aqjajf98re5gb83km3om9.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ti2.nguli",
+            "certificate_hash": "fbf4135775823a681c5209ccd5847938c8d53cfd"
+          }
+        },
+        {
+          "client_id": "919080875027-gi18i1khk2b88susltbatvphv45nekvv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyABofFIA69yZVqynfEAUPteA-9mSVFgHpc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "919080875027-gi18i1khk2b88susltbatvphv45nekvv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

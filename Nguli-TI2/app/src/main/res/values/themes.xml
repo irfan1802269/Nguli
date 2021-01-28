@@ -11,19 +11,23 @@
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimary</item>
+        <item name="android:windowLightStatusBar" tools:targetApi="23">true</item>
+        <item name="android:fontFamily">@font/rambla</item>
         <!-- Customize your theme here. -->
     </style>
 
     <style name="Theme.Nguli.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorOnPrimary</item>
+        <item name="android:windowLightStatusBar" tools:targetApi="23">true</item>
     </style>
 
     <style name="Theme.Nguli.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="Theme.Nguli.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
-    <style name="SplashTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="colorPrimary">@color/white</item>
+    <style name="Theme.Splash" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowLightStatusBar" tools:targetApi="23">true</item>
     </style>
 </resources>
