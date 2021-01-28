@@ -20,41 +20,43 @@ import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.ti2.nguli.databinding.ActivityMainBinding
+import com.ti2.nguli.databinding.ActivityVerifyAccountBinding
 import com.ti2.nguli.ui.account.AccountFragment
 import com.ti2.nguli.ui.cart.CartFragment
 import com.ti2.nguli.ui.history.HistoryFragment
 import com.ti2.nguli.ui.home.HomeFragment
 
-class MainActivity : AppCompatActivity(){
+class MainActivity : AppCompatActivity() {
 
-        private lateinit var binding : ActivityMainBinding
-        override fun onCreate(savedInstanceState: Bundle?) {
-            super.onCreate(savedInstanceState)
-            //setContentView(R.layout.activity_main)
-            setContentView(binding.root)
-            binding.navView.
-            // binding.navView.setOnNavigationItemSelectedListener(this)
+    private lateinit var binding: ActivityMainBinding
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        //setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        // binding.navView.setOnNavigationItemSelectedListener(this)
 
 
-            val navView: BottomNavigationView = findViewById(R.id.nav_view)
+        val navView: BottomNavigationView = findViewById(R.id.nav_view)
 
-            val navController = findNavController(R.id.nav_host_fragment)
-            // Passing each menu ID as a set of Ids because each
-            // menu should be considered as top level destinations.
-            val appBarConfiguration = AppBarConfiguration(
-                setOf(
-                    R.id.navigation_home,
-                    R.id.navigation_history,
-                    R.id.navigation_cart,
-                    R.id.navigation_account
-                )
+        val navController = findNavController(R.id.nav_host_fragment)
+        // Passing each menu ID as a set of Ids because each
+        // menu should be considered as top level destinations.
+        val appBarConfiguration = AppBarConfiguration(
+            setOf(
+                R.id.navigation_home,
+                R.id.navigation_cart,
+                R.id.navigation_history,
+                R.id.navigation_account
             )
-            setupActionBarWithNavController(navController, appBarConfiguration)
-            navView.setupWithNavController(navController)
-        }
-
-
+        )
+        setupActionBarWithNavController(navController, appBarConfiguration)
+        navView.setupWithNavController(navController)
     }
+
+
+}
 
 
 

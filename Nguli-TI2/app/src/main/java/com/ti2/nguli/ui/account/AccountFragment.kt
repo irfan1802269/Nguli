@@ -9,10 +9,15 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
+import com.ti2.nguli.MainActivity
 import com.ti2.nguli.R
 
 class AccountFragment : Fragment() {
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        //(requireActivity() as MainActivity).supportActionBar?.title = "Akun"
+    }
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -21,8 +26,5 @@ class AccountFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_account, container, false)
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        (activity as AppCompatActivity).supportActionBar?.title = "Account"
-    }
+
 }

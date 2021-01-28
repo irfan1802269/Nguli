@@ -1,12 +1,12 @@
 <resources>
-    <string name="app_name">Nguli</string>
+    <string name="app_name">NGULI</string>
     <string name="title_activity_bottom_navigation_bar">MainActivity</string>
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
-    <string name="title_cart">Cart</string>
-    <string name="appbar_home">Judul</string>
-    <string name="title_history">History</string>
-    <string name="title_account">Account</string>
+    <string name="title_cart">Pesanan</string>
+    <string name="appbar_home">NGULI</string>
+    <string name="title_history">Riwayat</string>
+    <string name="title_account">Akun</string>
     <string name="name">Nama</string>
     <string name="description">Deskripsi</string>
 
@@ -155,5 +155,8 @@
     <string name="title_activity_maps">Map</string>
     <string name="action_setting">Tombol Uji</string>
     <string name="setting">Uji</string>
+    <string name="title">Title</string>
+    <string name="category">Category</string>
+    <string name="date">Date</string>
 
 </resources>

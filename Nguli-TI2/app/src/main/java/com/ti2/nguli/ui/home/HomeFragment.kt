@@ -1,6 +1,8 @@
 package com.ti2.nguli.ui.home
 
+import android.content.Intent
 import android.os.Bundle
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,12 +11,15 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil.setContentView
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.squareup.picasso.Picasso
 import com.synnapps.carouselview.CarouselView
 import com.synnapps.carouselview.ImageListener
+import com.ti2.nguli.CategoryActivity
+import com.ti2.nguli.MainActivity
 import com.ti2.nguli.MyData
 import com.ti2.nguli.R
 import com.ti2.nguli.adapter.GridMyDataAdapter
@@ -31,33 +36,35 @@ class HomeFragment : Fragment(), View.OnClickListener {
     //private lateinit var viewPager2: ViewPager2
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val mFragmentManager = fragmentManager as FragmentManager
         binding.btnCategory.setOnClickListener(this)
         binding.btnBundle.setOnClickListener(this)
         binding.btnVoucher.setOnClickListener(this)
         binding.btnPencarian.setOnClickListener(this)
+        //(requireActivity() as MainActivity).supportActionBar?.title = "NGULI"
+        val textView = TextView(activity)
+        //textView.gravity
+
+
+        rv_mydata.setHasFixedSize(true)
+        list.addAll(getListMyDatas())
+        showRecyclerGrid()
     }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentHomeBinding.inflate(inflater, container, false)
-        val view  = binding.root
+        val view = binding.root
         return view
 
         //return inflater.inflate(R.layout.fragment_home, container, false)
 
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
 
-        rv_mydata.setHasFixedSize(true)
-        list.addAll(getListMyDatas())
-        showRecyclerGrid()
-
-
-    }
 
     fun getListMyDatas(): ArrayList<MyData> {
         val dataName = resources.getStringArray(R.array.data_name)
@@ -88,18 +95,38 @@ class HomeFragment : Fragment(), View.OnClickListener {
     override fun onClick(v: View?) {
         when (v?.id) {
             R.id.btn_category -> {
-                signOut()
+                btnCategory()
             }
             R.id.btn_bundle -> {
-                sendEmailVerification()
+                btnBundle()
             }
             R.id.btn_voucher -> {
-                sendEmailVerification()
+                btnVoucher()
             }
             R.id.btn_pencarian -> {
-                sendEmailVerification()
+                btnPencarian()
             }
         }
+    }
+
+    private fun btnPencarian() {
+        val intent = Intent(activity, CategoryActivity::class.java)
+        startActivity(intent)
+    }
+
+    private fun btnVoucher() {
+        val intent = Intent(activity, CategoryActivity::class.java)
+        startActivity(intent)
+    }
+
+    private fun btnBundle() {
+        val intent = Intent(activity, CategoryActivity::class.java)
+        startActivity(intent)
+    }
+
+    private fun btnCategory() {
+        val intent = Intent(activity, CategoryActivity::class.java)
+        startActivity(intent)
     }
 
 

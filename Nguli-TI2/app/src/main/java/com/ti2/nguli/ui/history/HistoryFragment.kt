@@ -1,72 +1,134 @@
 package com.ti2.nguli.ui.history
 
-import androidx.lifecycle.ViewModelProvider
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
-import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.Observer
+import android.widget.Toast
+import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.snackbar.Snackbar
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
+import com.ti2.nguli.CategoryActivity
 import com.ti2.nguli.MyData
-import com.ti2.nguli.R
-import com.ti2.nguli.adapter.CardViewMyDataAdapter
-import kotlinx.android.synthetic.main.fragment_home.*
+import com.ti2.nguli.adapter.HistoryAdapter
+import com.ti2.nguli.data.HistoryData
+import com.ti2.nguli.databinding.FragmentHistoryBinding
+import com.ti2.nguli.helper.REQUEST_ADD
+import com.ti2.nguli.helper.REQUEST_UPDATE
+import com.ti2.nguli.helper.RESULT_ADD
+import com.ti2.nguli.helper.RESULT_DELETE
+import com.ti2.nguli.helper.RESULT_UPDATE
+import kotlinx.android.synthetic.main.fragment_history.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 class HistoryFragment : Fragment() {
 
 
     private val list = ArrayList<MyData>()
+    private lateinit var adapter: HistoryAdapter
+    private lateinit var binding: FragmentHistoryBinding
+    private lateinit var auth: FirebaseAuth
+    private lateinit var firestore: FirebaseFirestore
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        val mFragmentManager = fragmentManager as FragmentManager
+        //(requireActivity() as MainActivity).supportActionBar?.title = "History"
+        firestore = Firebase.firestore
+        auth = Firebase.auth
+        binding.rvQuotes.layoutManager = LinearLayoutManager(activity)
+        binding.rvQuotes.setHasFixedSize(true)
+        adapter = HistoryAdapter(this)
+
+        binding.fabAdd.setOnClickListener {
+            val intent = Intent(activity, CategoryActivity::class.java)
+            //startActivityForResult(intent, REQUEST_ADD)
+            startActivity(intent)
+        }
+        loadQuotes()
+    }
+
+
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_history, container, false)
+        binding = FragmentHistoryBinding.inflate(inflater, container, false)
+        val view = binding.root
+        return view
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-
-        rv_mydata.setHasFixedSize(true)
-        list.addAll(getListMyDatas())
-        showRecyclerCardView()
+    private fun showSnackbarMessage(message: String) {
+        Snackbar.make(binding.rvQuotes, message, Snackbar.LENGTH_SHORT).show()
     }
-
-    fun getListMyDatas(): ArrayList<MyData> {
-        val dataName = resources.getStringArray(R.array.data_name)
-        val dataDescription = resources.getStringArray(R.array.data_description)
-        val dataPhoto = resources.getStringArray(R.array.data_photo)
-        val dataLat = resources.getStringArray(R.array.data_lat)
-        val dataLang = resources.getStringArray(R.array.data_lang)
-        val listMyData = ArrayList<MyData>()
-        for (position in dataName.indices) {
-            val myData = MyData(
-                dataName[position],
-                dataDescription[position],
-                dataPhoto[position],
-                dataLat[position].toDouble(),
-                dataLang[position].toDouble()
-            )
-            listMyData.add(myData)
+    private fun loadQuotes() {
+        GlobalScope.launch(Dispatchers.Main) {
+            progressbar.visibility = View.VISIBLE
+            val quotesList = ArrayList<HistoryData>()
+            val currentUser = auth.currentUser
+            firestore.collection("quotes")
+                .whereEqualTo("uid", currentUser?.uid)
+                .get()
+                .addOnSuccessListener { result ->
+                    progressbar.visibility = View.INVISIBLE
+                    for (document in result) {
+                        val id = document.id
+                        val title = document.get("title").toString()
+                        val description = document.get("description").toString()
+                        val category = document.get("category").toString()
+                        val date = document.get("date") as com.google.firebase.Timestamp
+                        quotesList.add(HistoryData(id, title, description, category, date))
+                    }
+                    if (quotesList.size > 0) {
+                        binding.rvQuotes.adapter = adapter
+                        adapter.listQuotes = quotesList
+                    } else {
+                        adapter.listQuotes = ArrayList()
+                        showSnackbarMessage("Tidak ada data saat ini")
+                    }
+                }
+                .addOnFailureListener { exception ->
+                    progressbar.visibility = View.INVISIBLE
+                    Toast.makeText(
+                        activity, "Error adding document", Toast.LENGTH_SHORT
+                    ).show()
+                }
         }
-        return listMyData
     }
 
-
-    private fun showRecyclerCardView() {
-        rv_mydata.layoutManager = LinearLayoutManager(context)
-        val cardViewMyDataAdapter = context?.let { CardViewMyDataAdapter (list, it) }
-        rv_mydata.adapter = cardViewMyDataAdapter
-    }
-
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        (activity as AppCompatActivity).supportActionBar?.title = "History"
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (data != null) {
+            when (requestCode) {
+                REQUEST_ADD -> if (resultCode == RESULT_ADD) {
+                    loadQuotes()
+                    showSnackbarMessage("Satu item berhasil ditambahkan")
+                }
+                REQUEST_UPDATE ->
+                    when (resultCode) {
+                        RESULT_UPDATE -> {
+                            loadQuotes()
+                            showSnackbarMessage("Satu item berhasil diubah")
+                        }
+                        RESULT_DELETE -> {
+                            loadQuotes()
+                            showSnackbarMessage("Satu item berhasil dihapus")
+                        }
+                    }
+            }
+        }
     }
 
 
