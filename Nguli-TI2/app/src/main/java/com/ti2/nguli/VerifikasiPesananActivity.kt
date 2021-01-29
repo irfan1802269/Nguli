@@ -19,35 +19,38 @@ import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.ti2.nguli.data.HistoryData
 import com.ti2.nguli.databinding.ActivityHistoryAddUpdateBinding
-import com.ti2.nguli.helper.ALERT_DIALOG_CLOSE
-import com.ti2.nguli.helper.ALERT_DIALOG_DELETE
-import com.ti2.nguli.helper.EXTRA_POSITION
-import com.ti2.nguli.helper.EXTRA_QUOTE
-import com.ti2.nguli.helper.RESULT_ADD
-import com.ti2.nguli.helper.RESULT_DELETE
-import com.ti2.nguli.helper.RESULT_UPDATE
+import com.ti2.nguli.databinding.ActivityVerifikasiPesananBinding
 import kotlinx.android.synthetic.main.activity_history_add_update.*
 
-class HistoryAddUpdateActivity : AppCompatActivity(), View.OnClickListener {
+class VerifikasiPesananActivity : AppCompatActivity() {
     private var isEdit = false
     private var categoriesSpinnerArray = ArrayList<String>()
     private var quote: HistoryData? = null
     private var position: Int = 0
-    private var categorySelection: Int = 0
-    private var categoryName: String = "0"
-    private lateinit var binding: ActivityHistoryAddUpdateBinding
+    private var provinsiSelection: Int = 0
+    private var kotaSelection: Int = 0
+    private var kecamatanSelection: Int = 0
+    private var jumlahPekerjaSelection: Int = 0
+    private var durasiSelection: Int = 0
+    private var provinsiName: String = "0"
+    private var kotaName: String = "0"
+    private var kecamatanName: String = "0"
+    private var jumlahPekerjaName: String = "0"
+    private var durasiName: String = "0"
+
+    private lateinit var binding: ActivityVerifikasiPesananBinding
     private lateinit var auth: FirebaseAuth
     private lateinit var firestore: FirebaseFirestore
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityHistoryAddUpdateBinding.inflate(layoutInflater)
+        binding = ActivityVerifikasiPesananBinding.inflate(layoutInflater)
         setContentView(binding.root)
         firestore = Firebase.firestore
         auth = Firebase.auth
         categoriesSpinnerArray = getCategories()
-        quote = intent.getParcelableExtra(EXTRA_QUOTE)
+        quote = intent.getParcelableExtra(helper.EXTRA_QUOTE)
         if (quote != null) {
-            position = intent.getIntExtra(EXTRA_POSITION, 0)
+            position = intent.getIntExtra(helper.EXTRA_POSITION, 0)
             isEdit = true
         } else {
             quote = HistoryData()
@@ -93,7 +96,7 @@ class HistoryAddUpdateActivity : AppCompatActivity(), View.OnClickListener {
                 setCategories(categoriesSpinnerArray)
             }
             .addOnFailureListener { exception ->
-                Toast.makeText(this@HistoryAddUpdateActivity, "Categories cannot be retrieved ", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@VerifikasiPesananActivity, "Categories cannot be retrieved ", Toast.LENGTH_SHORT).show()
             }
         return categoriesSpinnerArray
     }
@@ -135,11 +138,11 @@ class HistoryAddUpdateActivity : AppCompatActivity(), View.OnClickListener {
                 firestore.collection("quotes").document(quote?.id.toString())
                     .set(user)
                     .addOnSuccessListener {
-                        setResult(RESULT_UPDATE, intent)
+                        setResult(helper.RESULT_UPDATE, intent)
                         finish()
                     }
                     .addOnFailureListener { e ->
-                        Toast.makeText(this@HistoryAddUpdateActivity, "Gagal mengupdate data", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this@VerifikasiPesananActivity, "Gagal mengupdate data", Toast.LENGTH_SHORT).show()
                     }
 
             } else {
@@ -154,14 +157,14 @@ class HistoryAddUpdateActivity : AppCompatActivity(), View.OnClickListener {
                 firestore.collection("quotes")
                     .add(user)
                     .addOnSuccessListener { documentReference ->
-                        Toast.makeText(this@HistoryAddUpdateActivity,
+                        Toast.makeText(this@VerifikasiPesananActivity,
                             "DocumentSnapshot added with ID: ${documentReference.id}",
                             Toast.LENGTH_SHORT).show()
-                        setResult(RESULT_ADD, intent)
+                        setResult(helper.RESULT_ADD, intent)
                         finish()
                     }
                     .addOnFailureListener { e ->
-                        Toast.makeText(this@HistoryAddUpdateActivity, "Error adding document", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this@VerifikasiPesananActivity, "Error adding document", Toast.LENGTH_SHORT).show()
                     }
 
             }
@@ -177,15 +180,15 @@ class HistoryAddUpdateActivity : AppCompatActivity(), View.OnClickListener {
     }
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.action_delete -> showAlertDialog(ALERT_DIALOG_DELETE)
-            android.R.id.home -> showAlertDialog(ALERT_DIALOG_CLOSE)
+            R.id.action_delete -> showAlertDialog(helper.ALERT_DIALOG_DELETE)
+            android.R.id.home -> showAlertDialog(helper.ALERT_DIALOG_CLOSE)
         }
         return super.onOptionsItemSelected(item)
         return true
     }
 
     private fun showAlertDialog(type: Int) {
-        val isDialogClose = type == ALERT_DIALOG_CLOSE
+        val isDialogClose = type == helper.ALERT_DIALOG_CLOSE
         val dialogTitle: String
         val dialogMessage: String
         if (isDialogClose) {
@@ -209,13 +212,13 @@ class HistoryAddUpdateActivity : AppCompatActivity(), View.OnClickListener {
                         .addOnSuccessListener {
                             Log.d("delete", "DocumentSnapshot successfully deleted!"+quote?.id.toString())
                             val intent = Intent()
-                            intent.putExtra(EXTRA_POSITION, position)
-                            setResult(RESULT_DELETE, intent)
+                            intent.putExtra(helper.EXTRA_POSITION, position)
+                            setResult(helper.RESULT_DELETE, intent)
                             finish()
                         }
                         .addOnFailureListener { e ->
                             Log.w("a", "Error deleting document", e)
-                            Toast.makeText(this@HistoryAddUpdateActivity, "Gagal menghapus data", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(this@VerifikasiPesananActivity, "Gagal menghapus data", Toast.LENGTH_SHORT).show()
                         }
 
                 }

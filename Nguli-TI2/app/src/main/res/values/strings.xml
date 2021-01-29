@@ -158,5 +158,7 @@
     <string name="title">Title</string>
     <string name="category">Category</string>
     <string name="date">Date</string>
+    <string name="submit">Submit</string>
+    <string name="delete">Delete</string>
 
 </resources>

@@ -51,6 +51,7 @@ class HomeFragment : Fragment(), View.OnClickListener {
         showRecyclerGrid()
     }
 
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,

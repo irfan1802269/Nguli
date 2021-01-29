@@ -16,6 +16,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.ti2.nguli.CategoryActivity
+import com.ti2.nguli.HistoryAddUpdateActivity
 import com.ti2.nguli.MyData
 import com.ti2.nguli.adapter.HistoryAdapter
 import com.ti2.nguli.data.HistoryData
@@ -50,9 +51,9 @@ class HistoryFragment : Fragment() {
         adapter = HistoryAdapter(this)
 
         binding.fabAdd.setOnClickListener {
-            val intent = Intent(activity, CategoryActivity::class.java)
-            //startActivityForResult(intent, REQUEST_ADD)
-            startActivity(intent)
+            val intent = Intent(activity, HistoryAddUpdateActivity::class.java)
+            startActivityForResult(intent, REQUEST_ADD)
+           // startActivity(intent)
         }
         loadQuotes()
     }
