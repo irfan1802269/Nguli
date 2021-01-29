@@ -16,7 +16,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Nguli">
-        <activity android:name=".VerifikasiPesananActivity"></activity>
+        <activity android:name=".KebijakanPrivacyActivity"></activity>
+        <activity android:name=".VerifikasiPesananActivity" />
         <activity android:name=".HistoryAddUpdateActivity" />
         <activity android:name=".CategoryActivity" />
         <activity android:name=".VerifyAccountActivity" />

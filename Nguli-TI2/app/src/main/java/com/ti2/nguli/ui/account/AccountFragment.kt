@@ -11,6 +11,7 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import com.ti2.nguli.CategoryActivity
 import com.ti2.nguli.MainActivity
 import com.ti2.nguli.R
@@ -45,8 +46,7 @@ class AccountFragment : Fragment(), View.OnClickListener {
     override fun onClick(v: View?) {
         when (v?.id) {
             R.id.stgPesanan -> {
-                val intent = Intent(activity, CategoryActivity::class.java)
-                startActivity(intent)
+                findNavController().navigate(R.id.navigation_cart)
             }
             R.id.stgVoucher -> {
                 val intent = Intent(activity, CategoryActivity::class.java)
@@ -61,12 +61,8 @@ class AccountFragment : Fragment(), View.OnClickListener {
                 startActivity(intent)
             }
             R.id.stgLogout -> {
-                val mCartFragment = CartFragment()
-                val mFragmentManager = fragmentManager as FragmentManager
-                mFragmentManager
-                    .beginTransaction()
-                    .replace(R.id.frame_container, mCartFragment)
-                    .commit()
+
+
             }
         }
     }

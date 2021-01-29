@@ -18,14 +18,19 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.ti2.nguli.data.HistoryData
+import com.ti2.nguli.data.VerifikasiPesananData
 import com.ti2.nguli.databinding.ActivityHistoryAddUpdateBinding
 import com.ti2.nguli.databinding.ActivityVerifikasiPesananBinding
 import kotlinx.android.synthetic.main.activity_history_add_update.*
 
-class VerifikasiPesananActivity : AppCompatActivity() {
+class VerifikasiPesananActivity : AppCompatActivity(), View.OnClickListener {
     private var isEdit = false
-    private var categoriesSpinnerArray = ArrayList<String>()
-    private var quote: HistoryData? = null
+    private var provinsiSpinnerArray = ArrayList<String>()
+    private var kotaSpinnerArray = ArrayList<String>()
+    private var kecamatanSpinnerArray = ArrayList<String>()
+    private var jumlahPekerjaSpinnerArray = ArrayList<String>()
+    private var durasiSpinnerArray = ArrayList<String>()
+    private var identitas: VerifikasiPesananData? = null
     private var position: Int = 0
     private var provinsiSelection: Int = 0
     private var kotaSelection: Int = 0
@@ -47,13 +52,17 @@ class VerifikasiPesananActivity : AppCompatActivity() {
         setContentView(binding.root)
         firestore = Firebase.firestore
         auth = Firebase.auth
-        categoriesSpinnerArray = getCategories()
-        quote = intent.getParcelableExtra(helper.EXTRA_QUOTE)
-        if (quote != null) {
+        kotaSpinnerArray = getKota()
+        provinsiSpinnerArray = getProvinsi()
+        kecamatanSpinnerArray = getKecamatan()
+        jumlahPekerjaSpinnerArray = getJumlahPekerja()
+        durasiSpinnerArray = getDurasi()
+        identitas = intent.getParcelableExtra(helper.EXTRA_QUOTE)
+        if (identitas != null) {
             position = intent.getIntExtra(helper.EXTRA_POSITION, 0)
             isEdit = true
         } else {
-            quote = HistoryData()
+            identitas = VerifikasiPesananData()
         }
         val actionBarTitle: String
         val btnTitle: String
@@ -61,9 +70,9 @@ class VerifikasiPesananActivity : AppCompatActivity() {
         if (isEdit) {
             actionBarTitle = "Ubah"
             btnTitle = "Update"
-            quote?.let {
-                binding.edtTitle.setText(it.title)
-                binding.edtDescription.setText(it.description)
+            identitas?.let {
+                //binding.edtTitle.setText(it.title)
+                binding.edtAlamat.setText(it.alamat)
             }!!
         } else {
             actionBarTitle = "Tambah"
@@ -76,40 +85,215 @@ class VerifikasiPesananActivity : AppCompatActivity() {
         binding.btnSubmit.setOnClickListener(this)
     }
 
-    private fun getCategories(): ArrayList<String> {
+    private fun getProvinsi(): ArrayList<String> {
         progressbar.visibility = View.VISIBLE
-        firestore.collection("categories")
+        firestore.collection("provinsi")
             .whereEqualTo("is_active", true)
             .get()
             .addOnSuccessListener { documents ->
                 var selection = 0;
                 for (document in documents) {
                     val name = document.get("name").toString()
-                    quote?.let {
-                        if(name==it.category){
-                            categorySelection = selection
+                    identitas?.let {
+                        if (name == it.provinsi) {
+                            provinsiSelection = selection
                         }
                     }
-                    categoriesSpinnerArray.add(name)
+                    provinsiSpinnerArray.add(name)
                     selection++
                 }
-                setCategories(categoriesSpinnerArray)
+                setProvinsi(provinsiSpinnerArray)
+            }
+            .addOnFailureListener { exception ->
+                Toast.makeText(
+                    this@VerifikasiPesananActivity,
+                    "Categories cannot be retrieved ",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+        return provinsiSpinnerArray
+    }
+
+    private fun getKota(): ArrayList<String> {
+        progressbar.visibility = View.VISIBLE
+        firestore.collection("kota")
+            .whereEqualTo("is_active", true)
+            .get()
+            .addOnSuccessListener { documents ->
+                var selection = 0;
+                for (document in documents) {
+                    val name = document.get("name").toString()
+                    identitas?.let {
+                        if (name == it.kota) {
+                            kotaSelection = selection
+                        }
+                    }
+                    kotaSpinnerArray.add(name)
+                    selection++
+                }
+                setKota(kotaSpinnerArray)
+            }
+            .addOnFailureListener { exception ->
+                Toast.makeText(
+                    this@VerifikasiPesananActivity,
+                    "Categories cannot be retrieved ",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+        return kotaSpinnerArray
+    }
+    private fun getKecamatan(): ArrayList<String> {
+        progressbar.visibility = View.VISIBLE
+        firestore.collection("kecamatan")
+            .whereEqualTo("is_active", true)
+            .get()
+            .addOnSuccessListener { documents ->
+                var selection = 0;
+                for (document in documents) {
+                    val name = document.get("name").toString()
+                    identitas?.let {
+                        if(name==it.kecamatan){
+                            kecamatanSelection = selection
+                        }
+                    }
+                    kecamatanSpinnerArray.add(name)
+                    selection++
+                }
+                setKecamatan(kecamatanSpinnerArray)
             }
             .addOnFailureListener { exception ->
                 Toast.makeText(this@VerifikasiPesananActivity, "Categories cannot be retrieved ", Toast.LENGTH_SHORT).show()
             }
-        return categoriesSpinnerArray
+        return kecamatanSpinnerArray
+    }
+    private fun getJumlahPekerja(): ArrayList<String> {
+        progressbar.visibility = View.VISIBLE
+        firestore.collection("jumlahPekerjas")
+            .whereEqualTo("is_active", true)
+            .get()
+            .addOnSuccessListener { documents ->
+                var selection = 0;
+                for (document in documents) {
+                    val name = document.get("name").toString()
+                    identitas?.let {
+                        if(name==it.jumlahPekerja){
+                            jumlahPekerjaSelection = selection
+                        }
+                    }
+                    jumlahPekerjaSpinnerArray.add(name)
+                    selection++
+                }
+                setJumlahPekerja(jumlahPekerjaSpinnerArray)
+            }
+            .addOnFailureListener { exception ->
+                Toast.makeText(this@VerifikasiPesananActivity, "Categories cannot be retrieved ", Toast.LENGTH_SHORT).show()
+            }
+        return jumlahPekerjaSpinnerArray
+    }
+    private fun getDurasi(): ArrayList<String> {
+        progressbar.visibility = View.VISIBLE
+        firestore.collection("durasi")
+            .whereEqualTo("is_active", true)
+            .get()
+            .addOnSuccessListener { documents ->
+                var selection = 0;
+                for (document in documents) {
+                    val name = document.get("name").toString()
+                    identitas?.let {
+                        if(name==it.durasi){
+                            durasiSelection = selection
+                        }
+                    }
+                    durasiSpinnerArray.add(name)
+                    selection++
+                }
+                setDurasi(durasiSpinnerArray)
+            }
+            .addOnFailureListener { exception ->
+                Toast.makeText(this@VerifikasiPesananActivity, "Categories cannot be retrieved ", Toast.LENGTH_SHORT).show()
+            }
+        return durasiSpinnerArray
     }
 
-    private fun setCategories(paymentMethodSpinnerAarray: ArrayList<String>) {
-        var spinnerAdapter= ArrayAdapter(this, android.R.layout.simple_list_item_1,paymentMethodSpinnerAarray)
-        binding.edtCategory.adapter=spinnerAdapter
-        binding.edtCategory.setSelection(categorySelection)
-        binding.edtCategory.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+    private fun setProvinsi(paymentMethodSpinnerAarray: ArrayList<String>) {
+        var spinnerAdapter =
+            ArrayAdapter(this, android.R.layout.simple_list_item_1, paymentMethodSpinnerAarray)
+        binding.edtProvinsi.adapter = spinnerAdapter
+        binding.edtProvinsi.setSelection(provinsiSelection)
+        binding.edtProvinsi.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(
                 parent: AdapterView<*>, view: View, position: Int, id: Long
             ) {
-                categoryName = binding.edtCategory.selectedItem.toString()
+                provinsiName = binding.edtProvinsi.selectedItem.toString()
+                progressbar.visibility = View.INVISIBLE
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+            }
+        }
+    }
+
+    private fun setKota(paymentMethodSpinnerAarray: ArrayList<String>) {
+        var spinnerAdapter =
+            ArrayAdapter(this, android.R.layout.simple_list_item_1, paymentMethodSpinnerAarray)
+        binding.edtKota.adapter = spinnerAdapter
+        binding.edtKota.setSelection(kotaSelection)
+        binding.edtKota.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(
+                parent: AdapterView<*>, view: View, position: Int, id: Long
+            ) {
+                kotaName = binding.edtKota.selectedItem.toString()
+                progressbar.visibility = View.INVISIBLE
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+            }
+        }
+    }
+    private fun setKecamatan(paymentMethodSpinnerAarray: ArrayList<String>) {
+        var spinnerAdapter =
+            ArrayAdapter(this, android.R.layout.simple_list_item_1, paymentMethodSpinnerAarray)
+        binding.edtKecamatan.adapter = spinnerAdapter
+        binding.edtKecamatan.setSelection(kecamatanSelection)
+        binding.edtKecamatan.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(
+                parent: AdapterView<*>, view: View, position: Int, id: Long
+            ) {
+                kecamatanName = binding.edtKecamatan.selectedItem.toString()
+                progressbar.visibility = View.INVISIBLE
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+            }
+        }
+    }
+    private fun setJumlahPekerja(paymentMethodSpinnerAarray: ArrayList<String>) {
+        var spinnerAdapter =
+            ArrayAdapter(this, android.R.layout.simple_list_item_1, paymentMethodSpinnerAarray)
+        binding.edtJumlahPekerja.adapter = spinnerAdapter
+        binding.edtJumlahPekerja.setSelection(jumlahPekerjaSelection)
+        binding.edtJumlahPekerja.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(
+                parent: AdapterView<*>, view: View, position: Int, id: Long
+            ) {
+                jumlahPekerjaName = binding.edtJumlahPekerja.selectedItem.toString()
+                progressbar.visibility = View.INVISIBLE
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+            }
+        }
+    }
+    private fun setDurasi(paymentMethodSpinnerAarray: ArrayList<String>) {
+        var spinnerAdapter =
+            ArrayAdapter(this, android.R.layout.simple_list_item_1, paymentMethodSpinnerAarray)
+        binding.edtDurasi.adapter = spinnerAdapter
+        binding.edtDurasi.setSelection(durasiSelection)
+        binding.edtDurasi.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(
+                parent: AdapterView<*>, view: View, position: Int, id: Long
+            ) {
+                durasiName = binding.edtDurasi.selectedItem.toString()
                 progressbar.visibility = View.INVISIBLE
             }
 
@@ -120,10 +304,10 @@ class VerifikasiPesananActivity : AppCompatActivity() {
 
     override fun onClick(view: View) {
         if (view.id == R.id.btn_submit) {
-            val title = binding.edtTitle.text.toString().trim()
-            val description = binding.edtDescription.text.toString().trim()
-            if (title.isEmpty()) {
-                binding.edtTitle.error = "Field can not be blank"
+            //val title = binding.edtTitle.text.toString().trim()
+            val alamat = binding.edtAlamat.text.toString().trim()
+            if (alamat.isEmpty()) {
+                binding.edtAlamat.error = "Field can not be blank"
                 return
             }
             if (isEdit) {
@@ -131,18 +315,26 @@ class VerifikasiPesananActivity : AppCompatActivity() {
                 val user = hashMapOf(
                     "uid" to currentUser?.uid,
                     "title" to title,
-                    "description" to description,
-                    "category" to categoryName,
+                    "alamat" to alamat,
+                    "provinsi" to provinsiName,
+                    "kota" to kotaName,
+                    "kecamatan" to kecamatanName,
+                    "jumlahPekerja" to jumlahPekerjaName,
+                    "durasi" to durasiName,
                     "date" to FieldValue.serverTimestamp()
                 )
-                firestore.collection("quotes").document(quote?.id.toString())
+                firestore.collection("identitas").document(identitas?.id.toString())
                     .set(user)
                     .addOnSuccessListener {
                         setResult(helper.RESULT_UPDATE, intent)
                         finish()
                     }
                     .addOnFailureListener { e ->
-                        Toast.makeText(this@VerifikasiPesananActivity, "Gagal mengupdate data", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(
+                            this@VerifikasiPesananActivity,
+                            "Gagal mengupdate data",
+                            Toast.LENGTH_SHORT
+                        ).show()
                     }
 
             } else {
@@ -150,21 +342,31 @@ class VerifikasiPesananActivity : AppCompatActivity() {
                 val user = hashMapOf(
                     "uid" to currentUser?.uid,
                     "title" to title,
-                    "description" to description,
-                    "category" to categoryName,
+                    "alamat" to alamat,
+                    "provinsi" to provinsiName,
+                    "kota" to kotaName,
+                    "kecamatan" to kecamatanName,
+                    "jumlahPekerja" to jumlahPekerjaName,
+                    "durasi" to durasiName,
                     "date" to FieldValue.serverTimestamp()
                 )
-                firestore.collection("quotes")
+                firestore.collection("identitas")
                     .add(user)
                     .addOnSuccessListener { documentReference ->
-                        Toast.makeText(this@VerifikasiPesananActivity,
+                        Toast.makeText(
+                            this@VerifikasiPesananActivity,
                             "DocumentSnapshot added with ID: ${documentReference.id}",
-                            Toast.LENGTH_SHORT).show()
+                            Toast.LENGTH_SHORT
+                        ).show()
                         setResult(helper.RESULT_ADD, intent)
                         finish()
                     }
                     .addOnFailureListener { e ->
-                        Toast.makeText(this@VerifikasiPesananActivity, "Error adding document", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(
+                            this@VerifikasiPesananActivity,
+                            "Error adding document",
+                            Toast.LENGTH_SHORT
+                        ).show()
                     }
 
             }
@@ -178,6 +380,7 @@ class VerifikasiPesananActivity : AppCompatActivity() {
         return super.onCreateOptionsMenu(menu)
         return true
     }
+
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.action_delete -> showAlertDialog(helper.ALERT_DIALOG_DELETE)
@@ -207,10 +410,13 @@ class VerifikasiPesananActivity : AppCompatActivity() {
                 if (isDialogClose) {
                     finish()
                 } else {
-                    firestore.collection("quotes").document(quote?.id.toString())
+                    firestore.collection("identitas").document(identitas?.id.toString())
                         .delete()
                         .addOnSuccessListener {
-                            Log.d("delete", "DocumentSnapshot successfully deleted!"+quote?.id.toString())
+                            Log.d(
+                                "delete",
+                                "DocumentSnapshot successfully deleted!" + identitas?.id.toString()
+                            )
                             val intent = Intent()
                             intent.putExtra(helper.EXTRA_POSITION, position)
                             setResult(helper.RESULT_DELETE, intent)
@@ -218,7 +424,11 @@ class VerifikasiPesananActivity : AppCompatActivity() {
                         }
                         .addOnFailureListener { e ->
                             Log.w("a", "Error deleting document", e)
-                            Toast.makeText(this@VerifikasiPesananActivity, "Gagal menghapus data", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(
+                                this@VerifikasiPesananActivity,
+                                "Gagal menghapus data",
+                                Toast.LENGTH_SHORT
+                            ).show()
                         }
 
                 }

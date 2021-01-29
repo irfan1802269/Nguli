@@ -18,10 +18,7 @@ import com.bumptech.glide.Glide
 import com.squareup.picasso.Picasso
 import com.synnapps.carouselview.CarouselView
 import com.synnapps.carouselview.ImageListener
-import com.ti2.nguli.CategoryActivity
-import com.ti2.nguli.MainActivity
-import com.ti2.nguli.MyData
-import com.ti2.nguli.R
+import com.ti2.nguli.*
 import com.ti2.nguli.adapter.GridMyDataAdapter
 import com.ti2.nguli.databinding.FragmentHomeBinding
 import kotlinx.android.synthetic.main.fragment_home.*
@@ -64,7 +61,6 @@ class HomeFragment : Fragment(), View.OnClickListener {
         //return inflater.inflate(R.layout.fragment_home, container, false)
 
     }
-
 
 
     fun getListMyDatas(): ArrayList<MyData> {
@@ -126,9 +122,11 @@ class HomeFragment : Fragment(), View.OnClickListener {
     }
 
     private fun btnCategory() {
-        val intent = Intent(activity, CategoryActivity::class.java)
-        startActivity(intent)
+
+        val intent = Intent(activity, VerifikasiPesananActivity::class.java)
+        startActivityForResult(intent, helper.REQUEST_ADD)
+        // startActivity(intent)
     }
-
-
 }
+
+
