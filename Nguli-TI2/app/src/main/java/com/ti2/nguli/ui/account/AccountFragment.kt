@@ -12,26 +12,45 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
-import com.ti2.nguli.CategoryActivity
-import com.ti2.nguli.MainActivity
-import com.ti2.nguli.R
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInClient
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
+import com.ti2.nguli.*
 import com.ti2.nguli.databinding.FragmentAccountBinding
 import com.ti2.nguli.databinding.FragmentHomeBinding
 import com.ti2.nguli.ui.cart.CartFragment
 import com.ti2.nguli.ui.history.HistoryFragment
 
 class AccountFragment : Fragment(), View.OnClickListener {
-
+    private lateinit var auth: FirebaseAuth
     private lateinit var binding: FragmentAccountBinding
+    private lateinit var googleSignInClient: GoogleSignInClient
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         //(requireActivity() as MainActivity).supportActionBar?.title = "Akun"
 
+        auth = Firebase.auth
+        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+            .requestIdToken(getString(R.string.default_web_client_id))
+            .requestEmail()
+            .build()
+
+        googleSignInClient = GoogleSignIn.getClient(requireActivity(), gso)
         binding.stgPesanan.setOnClickListener(this)
         binding.stgVoucher.setOnClickListener(this)
         binding.stgPengaturanProfil.setOnClickListener(this)
         binding.stgKebijakanPrivacy.setOnClickListener(this)
         binding.stgLogout.setOnClickListener(this)
+        val currentUser = auth.currentUser
+        if (currentUser == null) {
+            val intent = Intent(activity, SignInActivity::class.java)
+            startActivity(intent)
+            activity?.finish()
+        }
     }
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -53,17 +72,30 @@ class AccountFragment : Fragment(), View.OnClickListener {
                 startActivity(intent)
             }
             R.id.stgPengaturanProfil -> {
-                val intent = Intent(activity, CategoryActivity::class.java)
+                val intent = Intent(activity, SettingPreferenceActivity::class.java)
                 startActivity(intent)
             }
             R.id.stgKebijakanPrivacy -> {
-                val intent = Intent(activity, CategoryActivity::class.java)
+                val intent = Intent(activity, KebijakanPrivacyActivity::class.java)
                 startActivity(intent)
             }
             R.id.stgLogout -> {
+                signOut()
 
 
             }
+        }
+    }
+
+    private fun signOut() {
+        auth.signOut()
+        val currentUser = auth.currentUser
+        if (currentUser == null) {
+            val intent = Intent(activity, SignInActivity::class.java)
+            startActivity(intent)
+            activity?.finish()
+        }
+        googleSignInClient.signOut().addOnCompleteListener(requireActivity()) {
         }
     }
 

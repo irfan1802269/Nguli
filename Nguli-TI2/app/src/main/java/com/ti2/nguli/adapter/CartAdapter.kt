@@ -1,14 +1,19 @@
 package com.ti2.nguli.adapter
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.ti2.nguli.R
+import com.ti2.nguli.VerifikasiPesananActivity
 import com.ti2.nguli.data.HistoryData
 import com.ti2.nguli.data.VerifikasiPesananData
 import com.ti2.nguli.databinding.ItemHistoryBinding
 import com.ti2.nguli.databinding.ItemPesananBinding
+import com.ti2.nguli.helper.EXTRA_POSITION
+import com.ti2.nguli.helper.EXTRA_QUOTE
+import com.ti2.nguli.helper.REQUEST_UPDATE
 import com.ti2.nguli.ui.cart.CartFragment
 import com.ti2.nguli.ui.history.HistoryFragment
 import java.text.SimpleDateFormat
@@ -42,10 +47,7 @@ class CartAdapter (private val activity: CartFragment): RecyclerView.Adapter<Car
             binding.tvItemAlamat.text = quote.alamat
 
             binding.cvItemQuote.setOnClickListener{
-                //    val intent = Intent(activity, QuoteAddUpdateActivity::class.java)
-                //    intent.putExtra(EXTRA_POSITION, position)
-                //   intent.putExtra(EXTRA_QUOTE, quote)
-                //   activity.startActivityForResult(intent, REQUEST_UPDATE)
+
             }
         }
     }

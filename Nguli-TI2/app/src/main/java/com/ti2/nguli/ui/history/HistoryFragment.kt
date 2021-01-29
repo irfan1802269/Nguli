@@ -15,11 +15,12 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
-import com.ti2.nguli.CategoryActivity
-import com.ti2.nguli.HistoryAddUpdateActivity
-import com.ti2.nguli.MyData
+import com.ti2.nguli.*
+import com.ti2.nguli.adapter.CartAdapter
 import com.ti2.nguli.adapter.HistoryAdapter
 import com.ti2.nguli.data.HistoryData
+import com.ti2.nguli.data.VerifikasiPesananData
+import com.ti2.nguli.databinding.FragmentCartBinding
 import com.ti2.nguli.databinding.FragmentHistoryBinding
 import com.ti2.nguli.helper.REQUEST_ADD
 import com.ti2.nguli.helper.REQUEST_UPDATE
@@ -50,11 +51,7 @@ class HistoryFragment : Fragment() {
         binding.rvQuotes.setHasFixedSize(true)
         adapter = HistoryAdapter(this)
 
-        binding.fabAdd.setOnClickListener {
-            val intent = Intent(activity, HistoryAddUpdateActivity::class.java)
-            startActivityForResult(intent, REQUEST_ADD)
-           // startActivity(intent)
-        }
+
         loadQuotes()
     }
 
@@ -77,9 +74,9 @@ class HistoryFragment : Fragment() {
     private fun loadQuotes() {
         GlobalScope.launch(Dispatchers.Main) {
             progressbar.visibility = View.VISIBLE
-            val quotesList = ArrayList<HistoryData>()
+            val quotesList = ArrayList<VerifikasiPesananData>()
             val currentUser = auth.currentUser
-            firestore.collection("quotes")
+            firestore.collection("identitas")
                 .whereEqualTo("uid", currentUser?.uid)
                 .get()
                 .addOnSuccessListener { result ->
@@ -87,10 +84,14 @@ class HistoryFragment : Fragment() {
                     for (document in result) {
                         val id = document.id
                         val title = document.get("title").toString()
-                        val description = document.get("description").toString()
-                        val category = document.get("category").toString()
+                        val alamat = document.get("alamat").toString()
+                        val provinsi = document.get("provinsi").toString()
+                        val kecamatan = document.get("provinsi").toString()
+                        val kota = document.get("provinsi").toString()
+                        val jumlahPekerja = document.get("provinsi").toString()
+                        val durasi = document.get("provinsi").toString()
                         val date = document.get("date") as com.google.firebase.Timestamp
-                        quotesList.add(HistoryData(id, title, description, category, date))
+                        quotesList.add(VerifikasiPesananData(id, title, alamat, provinsi, kecamatan, kota, jumlahPekerja, durasi,  date))
                     }
                     if (quotesList.size > 0) {
                         binding.rvQuotes.adapter = adapter
@@ -113,17 +114,17 @@ class HistoryFragment : Fragment() {
         super.onActivityResult(requestCode, resultCode, data)
         if (data != null) {
             when (requestCode) {
-                REQUEST_ADD -> if (resultCode == RESULT_ADD) {
+                helper.REQUEST_ADD -> if (resultCode == helper.RESULT_ADD) {
                     loadQuotes()
                     showSnackbarMessage("Satu item berhasil ditambahkan")
                 }
-                REQUEST_UPDATE ->
+                helper.REQUEST_UPDATE ->
                     when (resultCode) {
-                        RESULT_UPDATE -> {
+                        helper.RESULT_UPDATE -> {
                             loadQuotes()
                             showSnackbarMessage("Satu item berhasil diubah")
                         }
-                        RESULT_DELETE -> {
+                        helper.RESULT_DELETE -> {
                             loadQuotes()
                             showSnackbarMessage("Satu item berhasil dihapus")
                         }

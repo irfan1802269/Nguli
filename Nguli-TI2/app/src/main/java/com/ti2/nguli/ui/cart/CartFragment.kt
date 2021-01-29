@@ -54,7 +54,7 @@ class CartFragment : Fragment() {
         adapter = CartAdapter(this)
 
         binding.fabAdd.setOnClickListener {
-            val intent = Intent(activity, HistoryAddUpdateActivity::class.java)
+            val intent = Intent(activity, VerifikasiPesananActivity::class.java)
             startActivityForResult(intent, helper.REQUEST_ADD)
             // startActivity(intent)
         }

@@ -55,6 +55,10 @@ class SignInActivity : AppCompatActivity(), View.OnClickListener {
             R.id.btnEmail -> {
                 signIn()
             }
+            R.id.btnPhone -> {
+                val intent = Intent(this@SignInActivity, PhoneAuthActivity::class.java)
+                startActivity(intent)
+            }
         }
     }
 
@@ -99,7 +103,7 @@ class SignInActivity : AppCompatActivity(), View.OnClickListener {
         super.onStart()
         val currentUser = auth.currentUser
         if (currentUser != null) {
-            val intent = Intent(this@SignInActivity, MainActivity::class.java)
+            val intent = Intent(this@SignInActivity, VerifyAccountActivity::class.java)
             startActivityForResult(intent, 1)
             finish()
         }
@@ -134,7 +138,7 @@ class SignInActivity : AppCompatActivity(), View.OnClickListener {
                     val view = binding.mainLayout
                     Snackbar.make(view, "Authentication Success.",
                         Snackbar.LENGTH_SHORT).show()
-                    val intent = Intent(this@SignInActivity, MainActivity::class.java)
+                    val intent = Intent(this@SignInActivity, VerifyAccountActivity::class.java)
                     startActivity(intent)
                     finish()
                 } else {

@@ -49,6 +49,7 @@ class VerifyAccountActivity : AppCompatActivity(), View.OnClickListener {
             finish()
         }
     }
+
     public override fun onStart() {
         super.onStart()
         val currentUser = auth.currentUser
@@ -56,8 +57,7 @@ class VerifyAccountActivity : AppCompatActivity(), View.OnClickListener {
             val intent = Intent(this@VerifyAccountActivity, SignInActivity::class.java)
             startActivity(intent)
             finish()
-        }
-        else{
+        } else {
             updateUI(currentUser)
         }
     }
@@ -80,16 +80,26 @@ class VerifyAccountActivity : AppCompatActivity(), View.OnClickListener {
             .addOnCompleteListener(this) { task ->
                 binding.btnEmailVerify.isEnabled = true
                 if (task.isSuccessful) {
-                    Toast.makeText(baseContext,
+
+                    Toast.makeText(
+                        baseContext,
                         "Verification email sent to ${user.email} ",
-                        Toast.LENGTH_SHORT).show()
+                        Toast.LENGTH_SHORT
+                    ).show()
+
+                    val intent = Intent(this@VerifyAccountActivity, MainActivity::class.java)
+                    startActivity(intent)
+                    finish()
                 } else {
-                    Toast.makeText(baseContext,
+                    Toast.makeText(
+                        baseContext,
                         "Failed to send verification email.",
-                        Toast.LENGTH_SHORT).show()
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
             }
     }
+
     private fun signOut() {
         auth.signOut()
         val currentUser = auth.currentUser
@@ -114,30 +124,32 @@ class VerifyAccountActivity : AppCompatActivity(), View.OnClickListener {
                 .load(photoUrl.toString())
                 .into(imageView);
             binding.tvName.text = name
-            if(TextUtils.isEmpty(name)){
+            if (TextUtils.isEmpty(name)) {
                 binding.tvName.text = "No Name"
             }
             binding.tvUserId.text = email
             for (profile in it.providerData) {
                 val providerId = profile.providerId
-                if(providerId=="password" && emailVerified==true){
+                if (providerId == "password" && emailVerified == true) {
                     binding.btnEmailVerify.isVisible = false
                 }
-                if(providerId=="phone"){
+                if (providerId == "phone") {
                     binding.tvName.text = phoneNumber
                     binding.tvUserId.text = providerId
                 }
             }
         }
     }
+
     companion object {
         private const val REQUEST_CODE = 100
     }
 
-    fun openQuotes(item: MenuItem){
+    fun openQuotes(item: MenuItem) {
         val intent = Intent(this@VerifyAccountActivity, MainActivity::class.java)
         startActivityForResult(intent, REQUEST_CODE)
     }
+
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.menu_action_bar, menu)
         return super.onCreateOptionsMenu(menu)
