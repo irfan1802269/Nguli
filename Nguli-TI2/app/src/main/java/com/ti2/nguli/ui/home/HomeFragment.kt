@@ -109,7 +109,7 @@ class HomeFragment : Fragment(), View.OnClickListener {
     }
 
     private fun btnBundle() {
-        val intent = Intent(activity, BundleActivity::class.java)
+        val intent = Intent(activity, ContentCategoryActivity::class.java)
         startActivity(intent)
     }
 
