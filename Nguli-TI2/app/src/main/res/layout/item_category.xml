@@ -4,9 +4,13 @@
     android:id="@+id/item_category"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
+    android:focusable="true"
+    android:clickable="true"
+    android:background="?attr/selectableItemBackground"
     android:gravity="center"
     android:orientation="vertical"
-    android:padding="16dp">
+    android:padding="5dp"
+    android:layout_margin="10dp">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/category_pict"
@@ -15,6 +19,7 @@
         android:scaleType="centerCrop"
         app:cardCornerRadius="15dp" >
         <ImageView
+            android:id="@+id/img_item_photo"
             android:layout_width="150dp"
             android:layout_height="100dp"
             android:scaleType="centerCrop"

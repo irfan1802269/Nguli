@@ -16,19 +16,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Nguli">
-        <activity android:name=".SettingPreferenceActivity"></activity>
-        <activity android:name=".KebijakanPrivacyActivity" />
-        <activity android:name=".VerifikasiPesananActivity" />
-        <activity android:name=".HistoryAddUpdateActivity" />
-        <activity android:name=".CategoryActivity" />
-        <activity android:name=".PhoneAuthActivity" />
-        <activity android:name=".VerifyAccountActivity" />
-        <activity
-            android:name=".SignUpActivity"
-            android:theme="@style/Theme.Nguli.NoActionBar" />
-        <activity
-            android:name=".SignInActivity"
-            android:theme="@style/Theme.Nguli.NoActionBar" />
+        <activity android:name=".buttonHome.ContentVoucherActivity"></activity>
+        <activity android:name=".buttonHome.ContentBundleActivity" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -41,6 +30,24 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
 
+        <activity
+            android:name=".buttonHome.TBMapsActivity"
+            android:label="@string/title_activity_t_b_maps" />
+        <activity android:name=".buttonHome.VoucherActivity" />
+        <activity android:name=".buttonHome.BundleActivity" />
+        <activity android:name=".SettingPreferenceActivity" />
+        <activity android:name=".KebijakanPrivacyActivity" />
+        <activity android:name=".VerifikasiPesananActivity" />
+        <activity android:name=".HistoryAddUpdateActivity" />
+        <activity android:name=".buttonHome.CategoryActivity" />
+        <activity android:name=".PhoneAuthActivity" />
+        <activity android:name=".VerifyAccountActivity" />
+        <activity
+            android:name=".SignUpActivity"
+            android:theme="@style/Theme.Nguli.NoActionBar" />
+        <activity
+            android:name=".SignInActivity"
+            android:theme="@style/Theme.Nguli.NoActionBar" />
         <activity
             android:name=".MapsActivity"
             android:label="@string/title_activity_maps" />

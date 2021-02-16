@@ -1,24 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:cardCornerRadius="15dp"
+    android:id="@+id/cv_item_quote"
     android:layout_width="match_parent"
-    android:layout_height="150dp"
-    android:orientation="vertical"
+    android:layout_height="wrap_content"
     android:layout_marginBottom="20dp"
-    android:elevation="10dp">
+    android:clickable="true"
+    android:focusable="true"
+    android:elevation="20dp"
+    android:layout_margin="16dp"
+    android:foreground="?attr/selectableItemBackground"
+    app:cardCornerRadius="20dp">
 
-    <ImageView
-        android:background="@drawable/shape_rectangle"
-        android:id="@+id/img_item_photo"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:layout_marginBottom="20dp"
-        android:scaleType="centerCrop"
-        tools:src="@color/black" />
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical">
 
+        <ImageView
+            android:id="@+id/img_item_photo"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:layout_marginBottom="20dp"
+            android:cropToPadding="true"
+            android:scaleType="centerCrop"
+            android:src="@color/main_color" />
+
+        <TextView
+            android:id="@+id/tv_item_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginBottom="16dp"
+            android:text="@string/tv_info_title"
+            android:textAlignment="textStart"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+
+        <TextView
+            android:id="@+id/tv_content_item_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginBottom="20dp"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:text="@string/tv_content_info_title"
+            android:textAlignment="textStart"
+            android:textSize="16sp" />
+
+    </LinearLayout>
 </androidx.cardview.widget.CardView>
-
 
 

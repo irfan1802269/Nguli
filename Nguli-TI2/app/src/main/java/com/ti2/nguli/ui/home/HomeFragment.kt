@@ -2,24 +2,16 @@ package com.ti2.nguli.ui.home
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.TextView
-import androidx.appcompat.app.AppCompatActivity
-import androidx.databinding.DataBindingUtil.setContentView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.bumptech.glide.Glide
-import com.squareup.picasso.Picasso
-import com.synnapps.carouselview.CarouselView
-import com.synnapps.carouselview.ImageListener
 import com.ti2.nguli.*
 import com.ti2.nguli.adapter.GridMyDataAdapter
+import com.ti2.nguli.buttonHome.*
 import com.ti2.nguli.databinding.FragmentHomeBinding
 import kotlinx.android.synthetic.main.fragment_home.*
 
@@ -107,25 +99,26 @@ class HomeFragment : Fragment(), View.OnClickListener {
     }
 
     private fun btnPencarian() {
-        val intent = Intent(activity, CategoryActivity::class.java)
+        val intent = Intent(activity, TBMapsActivity::class.java)
         startActivity(intent)
     }
 
     private fun btnVoucher() {
-        val intent = Intent(activity, CategoryActivity::class.java)
+        val intent = Intent(activity, VoucherActivity::class.java)
         startActivity(intent)
     }
 
     private fun btnBundle() {
-        val intent = Intent(activity, CategoryActivity::class.java)
+        val intent = Intent(activity, BundleActivity::class.java)
         startActivity(intent)
     }
 
     private fun btnCategory() {
 
-        val intent = Intent(activity, VerifikasiPesananActivity::class.java)
-        startActivityForResult(intent, helper.REQUEST_ADD)
-        // startActivity(intent)
+        val intent = Intent(activity, CategoryActivity::class.java)
+
+        /* startActivityForResult(intent, helper.REQUEST_ADD) */
+        startActivity(intent)
     }
 }
 

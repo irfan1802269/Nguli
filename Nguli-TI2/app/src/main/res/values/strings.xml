@@ -161,7 +161,7 @@
     <string name="submit">Submit</string>
     <string name="delete">Delete</string>
     <string name="isiKebjakanPrivacy">Isi Kebijakan Privacy</string>
-    <string name="email">Second Email</string>
+    <string name="email">cintaimaginasi@gmail.com</string>
     <string name="phone_number">Nomor Telepon</string>
     <string name="age">Umur</string>
     <string name="gender">Jenis Kelamin</string>
@@ -173,7 +173,22 @@
     <string name="setting_page" />
     <string name="field_digit_only" />
     <string name="dark_theme">Dark Theme</string>
-    <string name="laki">L</string>
-    <string name="wanita">P</string>
+    <string name="laki">Pria</string>
+    <string name="wanita">Wanita</string>
+    <string name="title_activity_t_b_maps">Map</string>
+    <string name="nama_lengkap">Nama Lengkap</string>
+    <string name="nama_email">Email</string>
+    <string name="tv_nama_email">Email</string>
+    <string name="tv_nomor_telepon">Nomor HP</string>
+    <string name="tv_tanggal_lahir">Tanggal Lahir</string>
+    <string name="tv_title_voucher">Title Voucher</string>
+    <string name="tv_tgl_voucher">21 Desember</string>
+    <string name="tv_minimum_voucher">Minimum Transasksi</string>
+    <string name="tv_content_syarat_voucher">aa</string>
+    <string name="tv_syarat_voucher_title"><![CDATA[Syarat & Ketentuan]]></string>
+    <string name="tv_content_cara_voucher">aaaa</string>
+    <string name="tv_content_info_title">Contenttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaatttttttttttttttttt</string>
+    <string name="tv_info_title">Title</string>
+    <string name="tv_voucher_title">Diskon 50 % DUARRR</string>
 
 </resources>

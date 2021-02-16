@@ -105,14 +105,19 @@
             android:id="@+id/edt_durasi"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"/>
+            android:layout_marginBottom="20dp" />
 
-        <Button
-            android:id="@+id/btn_submit"
-            style="@style/Base.Widget.AppCompat.Button.Colored"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Next" />
+
     </LinearLayout>
+
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:id="@+id/btn_submit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:layout_gravity="bottom|center"
+        android:backgroundTint="@color/main_color"
+        android:text="Next"
+        android:textAlignment="center" />
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
 

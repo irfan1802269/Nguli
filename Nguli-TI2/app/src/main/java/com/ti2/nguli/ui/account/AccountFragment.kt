@@ -1,16 +1,11 @@
 package com.ti2.nguli.ui.account
 
 import android.content.Intent
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
-import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.FragmentManager
-import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
@@ -19,10 +14,9 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.ti2.nguli.*
+import com.ti2.nguli.buttonHome.CategoryActivity
 import com.ti2.nguli.databinding.FragmentAccountBinding
 import com.ti2.nguli.databinding.FragmentHomeBinding
-import com.ti2.nguli.ui.cart.CartFragment
-import com.ti2.nguli.ui.history.HistoryFragment
 
 class AccountFragment : Fragment(), View.OnClickListener {
     private lateinit var auth: FirebaseAuth

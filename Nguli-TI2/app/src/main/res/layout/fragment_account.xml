@@ -8,13 +8,15 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        >
+        android:layout_height="match_parent">
 
         <androidx.cardview.widget.CardView
             android:id="@+id/deskrpisi_akun"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?attr/selectableItemBackground"
             android:orientation="vertical"
             android:padding="8dp"
             app:layout_constraintBottom_toTopOf="@id/txtAkun"
@@ -59,7 +61,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginRight="16dp"
-                        android:text="user@username.com"
+                        android:text="@string/email"
                         tools:text="detail" />
                 </LinearLayout>
 
@@ -87,7 +89,10 @@
             android:id="@+id/stgPesanan"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:clickable="true"
             android:elevation="12dp"
+            android:focusable="true"
+            android:foreground="?attr/selectableItemBackground"
             android:orientation="horizontal"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
@@ -96,8 +101,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="20dp"
-                android:gravity="center_vertical">
+                android:gravity="center_vertical"
+                android:padding="20dp">
 
                 <ImageView
 
@@ -118,12 +123,16 @@
 
 
         </androidx.cardview.widget.CardView>
+
         <androidx.cardview.widget.CardView
             android:id="@+id/stgVoucher"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:elevation="12dp"
             android:layout_marginTop="1dp"
+            android:clickable="true"
+            android:elevation="12dp"
+            android:focusable="true"
+            android:foreground="?attr/selectableItemBackground"
             android:orientation="horizontal"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
@@ -132,8 +141,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="20dp"
-                android:gravity="center_vertical">
+                android:gravity="center_vertical"
+                android:padding="20dp">
 
                 <ImageView
 
@@ -154,13 +163,17 @@
 
 
         </androidx.cardview.widget.CardView>
+
         <androidx.cardview.widget.CardView
             android:id="@+id/stgPengaturanProfil"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:elevation="12dp"
-            android:orientation="horizontal"
             android:layout_marginTop="1dp"
+            android:clickable="true"
+            android:elevation="12dp"
+            android:focusable="true"
+            android:foreground="?attr/selectableItemBackground"
+            android:orientation="horizontal"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/stgVoucher">
@@ -168,8 +181,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="20dp"
-                android:gravity="center_vertical">
+                android:gravity="center_vertical"
+                android:padding="20dp">
 
                 <ImageView
 
@@ -190,6 +203,7 @@
 
 
         </androidx.cardview.widget.CardView>
+
         <TextView
             android:id="@+id/txtInfo"
             android:layout_width="match_parent"
@@ -208,9 +222,12 @@
             android:id="@+id/stgKebijakanPrivacy"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:elevation="12dp"
-            android:orientation="horizontal"
             android:layout_marginTop="1dp"
+            android:clickable="true"
+            android:elevation="12dp"
+            android:focusable="true"
+            android:foreground="?attr/selectableItemBackground"
+            android:orientation="horizontal"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/txtInfo">
@@ -218,8 +235,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="20dp"
-                android:gravity="center_vertical">
+                android:gravity="center_vertical"
+                android:padding="20dp">
 
                 <ImageView
 
@@ -239,13 +256,17 @@
 
 
         </androidx.cardview.widget.CardView>
+
         <androidx.cardview.widget.CardView
             android:id="@+id/stgLogout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:elevation="12dp"
-            android:orientation="horizontal"
             android:layout_marginTop="1dp"
+            android:clickable="true"
+            android:elevation="12dp"
+            android:focusable="true"
+            android:foreground="?attr/selectableItemBackground"
+            android:orientation="horizontal"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/stgKebijakanPrivacy">
@@ -253,8 +274,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="20dp"
-                android:gravity="center_vertical">
+                android:gravity="center_vertical"
+                android:padding="20dp">
 
                 <ImageView
 

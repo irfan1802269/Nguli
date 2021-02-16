@@ -33,7 +33,7 @@ class SettingPreferenceActivity : AppCompatActivity(), View.OnClickListener {
             val email = binding.edtEmail.text.toString().trim()
             val age = binding.edtAge.text.toString().trim()
             val phoneNo = binding.edtPhone.text.toString().trim()
-            val isLoveMU = binding.rgLoveMu.checkedRadioButtonId == R.id.rb_yes
+
             val isGender = binding.rgGender.checkedRadioButtonId == R.id.rb_genderyes
             if (name.isEmpty()) {
                 binding.edtName.error = getString(R.string.field_required)
@@ -60,7 +60,7 @@ class SettingPreferenceActivity : AppCompatActivity(), View.OnClickListener {
                 binding.edtPhone.error = getString(R.string.field_digit_only)
                 return
             }
-            saveSetting(name, email, age, phoneNo, isGender, isLoveMU)
+            saveSetting(name, email, age, phoneNo, isGender)
             val resultIntent = Intent()
             setResult(RESULT_CODE, resultIntent)
             finish()
@@ -88,11 +88,7 @@ class SettingPreferenceActivity : AppCompatActivity(), View.OnClickListener {
         } else {
             binding.rbGenderno.isChecked = true
         }
-        if (settingModel.isDarkTheme) {
-            binding.rbYes.isChecked = true
-        } else {
-            binding.rbNo.isChecked = true
-        }
+
     }
 
     private fun saveSetting(
@@ -101,7 +97,7 @@ class SettingPreferenceActivity : AppCompatActivity(), View.OnClickListener {
         age: String,
         phoneNo: String,
         isGender: Boolean,
-        isLoveMU: Boolean
+
     ) {
         val settingPreference = SettingPreference(this)
         settingModel.name = name
@@ -109,7 +105,7 @@ class SettingPreferenceActivity : AppCompatActivity(), View.OnClickListener {
         settingModel.age = age
         settingModel.phoneNumber = phoneNo
         settingModel.isLaki = isGender
-        settingModel.isDarkTheme = isLoveMU
+
         settingPreference.setSetting(settingModel)
         Toast.makeText(this, "Data tersimpan", Toast.LENGTH_SHORT).show()
     }

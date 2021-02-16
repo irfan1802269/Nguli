@@ -10,5 +10,5 @@ data class SettingModel (
     var age: String? = null,
     var phoneNumber: String? = null,
     var isLaki: Boolean = false,
-    var isDarkTheme: Boolean = false
+
 ): Parcelable
