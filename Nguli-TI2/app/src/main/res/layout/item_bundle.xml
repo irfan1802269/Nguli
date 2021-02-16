@@ -10,7 +10,7 @@
     android:elevation="20dp"
     android:layout_margin="16dp"
     android:foreground="?attr/selectableItemBackground"
-    app:cardCornerRadius="20dp">
+    app:cardCornerRadius="10dp">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -28,20 +28,20 @@
             android:src="@color/main_color" />
 
         <TextView
-            android:id="@+id/tv_item_title"
+            android:id="@+id/tv_bundle_item_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
             android:layout_marginBottom="16dp"
-            android:text="@string/tv_info_title"
+            android:text="@string/tv_bundle_item_title"
             android:textAlignment="textStart"
             android:textSize="16sp"
             android:textStyle="bold" />
 
 
         <TextView
-            android:id="@+id/tv_content_item_title"
+            android:id="@+id/tv_bundle_item_content"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="16dp"
@@ -49,7 +49,7 @@
             android:layout_marginBottom="20dp"
             android:ellipsize="end"
             android:maxLines="2"
-            android:text="@string/tv_content_info_title"
+            android:text="@string/tv_bundle_item_content"
             android:textAlignment="textStart"
             android:textSize="16sp" />
 

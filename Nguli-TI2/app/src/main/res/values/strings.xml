@@ -190,5 +190,7 @@
     <string name="tv_content_info_title">Contenttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaatttttttttttttttttt</string>
     <string name="tv_info_title">Title</string>
     <string name="tv_voucher_title">Diskon 50 % DUARRR</string>
+    <string name="tv_bundle_item_title">Judul Bundle</string>
+    <string name="tv_bundle_item_content">Isi nya Bundle item</string>
 
 </resources>
