@@ -34,6 +34,7 @@
             android:textStyle="bold" />
 
         <include
+            android:id="@+id/btn_mini_maps"
             layout="@layout/activity_t_b_maps"
             android:layout_width="match_parent"
             android:layout_height="150dp"

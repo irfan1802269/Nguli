@@ -1,32 +1,26 @@
 package com.ti2.nguli.buttonHome
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
-import com.ti2.nguli.R
-import com.ti2.nguli.databinding.ActivityContentCategoryBinding
 
-class ContentCategoryActivity : AppCompatActivity(), OnMapReadyCallback,
-    GoogleMap.OnMapClickListener {
+class CCMapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
     private lateinit var mMap: GoogleMap
-    private lateinit var binding: ActivityContentCategoryBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_content_category)
-        supportActionBar?.title = "Verifikasi Kategori"
+        setContentView(R.layout.activity_c_c_maps)
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         val mapFragment = supportFragmentManager
             .findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
-
     }
 
     /**
@@ -42,20 +36,8 @@ class ContentCategoryActivity : AppCompatActivity(), OnMapReadyCallback,
         mMap = googleMap
 
         // Add a marker in Sydney and move the camera
-        val sydney = LatLng(-7.391230551478795, 109.24444770791433)
-        /*mMap.addMarker(MarkerOptions().position(sydney).title("Toko Bangunan Langgeng"))*/
+        val sydney = LatLng(-34.0, 151.0)
+        mMap.addMarker(MarkerOptions().position(sydney).title("Marker in Sydney"))
         mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney))
-        mMap.setOnMapClickListener(this)
     }
-
-    override fun onMapClick(p0: LatLng?) {
-        val intent = Intent(this, TBMapsActivity::class.java)
-        startActivity(intent)
-    }
-
-
-
-
-
-
 }

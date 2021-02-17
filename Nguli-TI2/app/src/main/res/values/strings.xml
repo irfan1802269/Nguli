@@ -192,5 +192,11 @@
     <string name="tv_voucher_title">Diskon 50 % DUARRR</string>
     <string name="tv_bundle_item_title">Judul Bundle</string>
     <string name="tv_bundle_item_content">Isi nya Bundle item</string>
+    <string name="option_get_place">Title</string>
+    <string name="default_info_title">Info</string>
+    <string name="default_info_snippet">Snippet</string>
+    <string name="pick_place">Pick Plcae</string>
+    <string name="maps_api_key">AIzaSyC7Xyv2yogvVBSrbLPZArZZ6muk1kyA7L0</string>
+    <string name="title_activity_c_c_maps">Map</string>
 
 </resources>
