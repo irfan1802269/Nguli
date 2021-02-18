@@ -27,6 +27,7 @@ class ContentVoucherActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_content_voucher)
         val myData by getParcelableExtra<MyData>(ContentVoucherActivity.EXTRA_MYDATA)
+        tv_title_voucher.text = myData?.name.toString()
         Glide.with(this)
             .load(myData?.photo.toString())
             .apply(RequestOptions().override(700, 700))

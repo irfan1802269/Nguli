@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
@@ -28,6 +29,8 @@ class VoucherDataAdapter(val listMyDatas: ArrayList<MyData>, val context: Contex
             .load(listMyDatas[position].photo)
             .apply(RequestOptions().override(350, 550))
             .into(holder.imgPhoto)
+        holder.tvName.text = myData.name
+
         holder.itemView.setOnClickListener {
             val moveWithObjectIntent = Intent(context, ContentVoucherActivity::class.java)
             moveWithObjectIntent.putExtra(ContentVoucherActivity.EXTRA_MYDATA, myData)
@@ -41,5 +44,7 @@ class VoucherDataAdapter(val listMyDatas: ArrayList<MyData>, val context: Contex
 
     inner class GridViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var imgPhoto: ImageView = itemView.findViewById(R.id.img_item_photo)
+        var tvName: TextView = itemView.findViewById(R.id.tv_item_name)
+
     }
 }

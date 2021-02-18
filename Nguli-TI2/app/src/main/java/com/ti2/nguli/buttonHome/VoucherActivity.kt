@@ -22,9 +22,9 @@ class VoucherActivity : AppCompatActivity() {
     }
 
     fun getListMyDatas(): ArrayList<MyData> {
-        val dataName = resources.getStringArray(R.array.data_name)
-        val dataDescription = resources.getStringArray(R.array.data_description)
-        val dataPhoto = resources.getStringArray(R.array.data_photo)
+        val dataName = resources.getStringArray(R.array.data_name_voucher)
+        val dataDescription = resources.getStringArray(R.array.data_description_voucher)
+        val dataPhoto = resources.getStringArray(R.array.data_photo_voucher)
         val dataLat = resources.getStringArray(R.array.data_lat)
         val dataLang = resources.getStringArray(R.array.data_lang)
         val listMyData = ArrayList<MyData>()

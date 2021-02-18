@@ -109,10 +109,10 @@ class TBMapsActivity : AppCompatActivity(), OnMapReadyCallback {
      * @param menu The options menu.
      * @return Boolean.
      */
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+ /*   override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.current_place_menu, menu)
         return true
-    }
+    } */
 
     /**
      * Handles a click on the menu option to get a place.
@@ -120,12 +120,12 @@ class TBMapsActivity : AppCompatActivity(), OnMapReadyCallback {
      * @return Boolean.
      */
     // [START maps_current_place_on_options_item_selected]
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+/*    override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId == R.id.option_get_place) {
             showCurrentPlace()
         }
         return true
-    }
+    } */
     // [END maps_current_place_on_options_item_selected]
 
     /**
@@ -299,7 +299,7 @@ class TBMapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
                     // Show a dialog offering the user the list of likely places, and add a
                     // marker at the selected place.
-                    openPlacesDialog()
+                 //   openPlacesDialog()
                 } else {
                     Log.e(TAG, "Exception: %s", task.exception)
                 }
@@ -324,7 +324,7 @@ class TBMapsActivity : AppCompatActivity(), OnMapReadyCallback {
      * Displays a form allowing the user to select a place from a list of likely places.
      */
     // [START maps_current_place_open_places_dialog]
-    private fun openPlacesDialog() {
+ /*   private fun openPlacesDialog() {
         // Ask the user to choose the place where they are now.
         val listener = DialogInterface.OnClickListener { dialog, which -> // The "which" argument contains the position of the selected item.
             val markerLatLng = likelyPlaceLatLngs[which]
@@ -353,7 +353,7 @@ class TBMapsActivity : AppCompatActivity(), OnMapReadyCallback {
             .setTitle(R.string.pick_place)
             .setItems(likelyPlaceNames, listener)
             .show()
-    }
+    } */
     // [END maps_current_place_open_places_dialog]
 
     /**

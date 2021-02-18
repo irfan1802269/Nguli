@@ -78,18 +78,21 @@
             android:gravity="center_vertical">
 
             <ImageButton
+                android:id="@+id/btn_decrease_jmlhpekerja"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@null"
                 android:src="@drawable/ic_baseline_remove_circle_24" />
 
             <EditText
+                android:inputType="number"
                 android:id="@+id/edt_jumlahPekerja"
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
                 android:maxLines="1"
-                android:text="100"
+                android:text="0"
+                android:maxLength="6"
                 android:textAlignment="center" />
 
             <TextView
@@ -99,6 +102,7 @@
                 android:text="Pekerja" />
 
             <ImageButton
+                android:id="@+id/btn_increase_jmlhpekerja"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
@@ -123,6 +127,7 @@
             android:gravity="center_vertical">
 
             <ImageButton
+                android:id="@+id/btn_decrease_durasi"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@null"
@@ -134,8 +139,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
                 android:inputType="number"
-                android:text="5"
+                android:text="0"
+                android:maxLength="7"
                 android:maxLines="1"
+
                 android:textAlignment="center" />
 
             <TextView
@@ -145,11 +152,43 @@
                 android:text="Hari" />
 
             <ImageButton
+                android:id="@+id/btn_increase_durasi"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
                 android:background="@null"
                 android:src="@drawable/ic_baseline_add_circle_24" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+android:layout_gravity="center"            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Harga"
+                android:textStyle="bold"
+                android:textSize="16dp"
+              />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Rp."
+                android:textStyle="bold"
+                android:textSize="16dp"
+                android:layout_marginLeft="50dp"
+                />
+            <TextView
+                android:id="@+id/tv_harga"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:inputType="number"
+                android:textSize="16dp"
+                android:layout_marginLeft="5dp"
+               />
         </LinearLayout>
 
 
@@ -164,5 +203,6 @@
         android:backgroundTint="@color/main_color"
         android:text="Next"
         android:textAlignment="center" />
+
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
 

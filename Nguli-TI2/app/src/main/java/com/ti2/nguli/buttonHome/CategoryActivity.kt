@@ -7,12 +7,13 @@ import com.ti2.nguli.MyData
 import com.ti2.nguli.R
 import com.ti2.nguli.adapter.CategoryDataAdapter
 import com.ti2.nguli.adapter.VoucherDataAdapter
+import com.ti2.nguli.data.CategoryData
 import kotlinx.android.synthetic.main.activity_category.*
 import kotlinx.android.synthetic.main.fragment_home.*
 
 class CategoryActivity : AppCompatActivity() {
 
-    private val list = ArrayList<MyData>()
+    private val list = ArrayList<CategoryData>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_category)
@@ -22,17 +23,15 @@ class CategoryActivity : AppCompatActivity() {
         showRecyclerGrid()
     }
 
-    fun getListMyDatas(): ArrayList<MyData> {
-        val dataName = resources.getStringArray(R.array.data_name)
-        val dataDescription = resources.getStringArray(R.array.data_description)
-        val dataPhoto = resources.getStringArray(R.array.data_photo)
+    fun getListMyDatas(): ArrayList<CategoryData> {
+        val dataName = resources.getStringArray(R.array.data_name_category)
+        val dataPhoto = resources.getStringArray(R.array.data_photo_category)
         val dataLat = resources.getStringArray(R.array.data_lat)
         val dataLang = resources.getStringArray(R.array.data_lang)
-        val listMyData = ArrayList<MyData>()
+        val listMyData = ArrayList<CategoryData>()
         for (position in dataName.indices) {
-            val myData = MyData(
+            val myData = CategoryData(
                 dataName[position],
-                dataDescription[position],
                 dataPhoto[position],
                 dataLat[position].toDouble(),
                 dataLang[position].toDouble()
@@ -44,7 +43,7 @@ class CategoryActivity : AppCompatActivity() {
 
     private fun showRecyclerGrid() {
         //rv_item_category.layoutManager = GridLayoutManager(this, 2)
-        val gridMyDataAdapter = CategoryDataAdapter(list)
+        val gridMyDataAdapter = CategoryDataAdapter(list, this)
         rv_item_category.adapter = gridMyDataAdapter
     }
 }

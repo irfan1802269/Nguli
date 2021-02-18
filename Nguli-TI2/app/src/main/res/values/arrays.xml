@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="data_name_category">
+        <item> Tukang Kayu </item>
+        <item> Tukang Batu </item>
+        <item> Tukang Gali </item>
+        <item> Tukang Cat </item>
+        <item> Tukang Ledeng </item>
+    </string-array>
+    <string-array name="data_photo_category">
+        <item> "https://cdn.pixabay.com/photo/2016/07/30/20/52/vintage-1557993_1280.jpg" </item>
+        <item>"https://www.goodfreephotos.com/cache/rocks-and-fossils/rock-mining_800.jpg"</item>
+        <item> "https://cdn.pixabay.com/photo/2017/06/27/17/20/hoe-2448148_1280.jpg" </item>
+        <item> "https://cdn.pixabay.com/photo/2016/03/09/15/22/painter-1246619_1280.jpg" </item>
+        <item> "https://cdn.pixabay.com/photo/2015/07/11/14/53/plumbing-840835_1280.jpg" </item>
+    </string-array>
+    <string-array name="data_name_bundle">
+        <item> Paket Borongan 1 </item>
+        <item> Paket Borongan 2 </item>
+    </string-array>
+    <string-array name="data_description_bundle">
+        <item> Lorem ipsum </item>
+        <item> Lorem ipsum </item>
+    </string-array>
+    <string-array name="data_photo_bundle">
+        <item> "https://cdn.pixabay.com/photo/2017/09/09/18/25/living-room-2732939_1280.jpg" </item>
+        <item> "https://cdn.pixabay.com/photo/2017/03/22/17/39/kitchen-2165756_1280.jpg" </item>
+    </string-array>
+    <string-array name="data_name_voucher">
+        <item> Diskon 50% Untuk Pemesanan Pertama </item>
+        <item> Diskon 30% Untuk Pemesanan Kedua</item>
+    </string-array>
+    <string-array name="data_description_voucher">
+        <item> Lorem Ipsum </item>
+        <item> Lorem Ipsum </item>
+    </string-array>
+    <string-array name="data_photo_voucher">
+        <item> "https://cdn.pixabay.com/photo/2016/11/29/09/49/blond-1868815_1280.jpg" </item>
+        <item> "https://cdn.pixabay.com/photo/2017/07/09/19/08/children-2487845_1280.jpg" </item>
+    </string-array>
+</resources>

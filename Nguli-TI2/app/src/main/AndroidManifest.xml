@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.ti2.nguli">
+    package="com.ti2.nguli" >
 
     <!--
          The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
@@ -16,7 +16,7 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Nguli">
+        android:theme="@style/Theme.Nguli" >
 
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
@@ -30,9 +30,11 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
 
+
         <activity
             android:name=".buttonHome.CCMapsActivity"
-            android:label="@string/title_activity_c_c_maps"></activity>
+            android:label="@string/title_activity_c_c_maps"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity android:name=".buttonHome.ContentCategoryActivity" />
         <activity android:name=".buttonHome.ContentVoucherActivity" />
         <activity android:name=".buttonHome.ContentBundleActivity" />
@@ -64,7 +66,7 @@
         <activity android:name=".MainActivity" />
         <activity
             android:name=".SplashScreenActivity"
-            android:theme="@style/Theme.Splash">
+            android:theme="@style/Theme.Splash" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
