@@ -25,6 +25,7 @@ import com.ti2.nguli.adapter.CardViewMyDataAdapter
 import com.ti2.nguli.adapter.CartAdapter
 import com.ti2.nguli.adapter.GridMyDataAdapter
 import com.ti2.nguli.adapter.HistoryAdapter
+import com.ti2.nguli.buttonHome.CategoryActivity
 import com.ti2.nguli.data.HistoryData
 import com.ti2.nguli.data.VerifikasiPesananData
 import com.ti2.nguli.databinding.FragmentCartBinding
@@ -54,7 +55,7 @@ class CartFragment : Fragment() {
         adapter = CartAdapter(this)
 
         binding.fabAdd.setOnClickListener {
-            val intent = Intent(activity, VerifikasiPesananActivity::class.java)
+            val intent = Intent(activity, CategoryActivity::class.java)
             startActivityForResult(intent, helper.REQUEST_ADD)
             // startActivity(intent)
         }

@@ -32,14 +32,14 @@ class HistoryAdapter(private val activity: HistoryFragment): RecyclerView.Adapte
         private val binding = ItemPesananBinding.bind(itemView)
         fun bind(quote: VerifikasiPesananData, position: Int) {
             binding.tvItemTitle.text = quote.title
-            binding.tvItemAlamat.text = quote.alamat
+
             val timestamp = quote.date as com.google.firebase.Timestamp
             val milliseconds = timestamp.seconds * 1000 + timestamp.nanoseconds / 1000000
             val sdf = SimpleDateFormat("dd/MMM/yyyy, HH:mm")
             val netDate = Date(milliseconds)
             val date = sdf.format(netDate).toString()
             binding.tvItemDate.text = date
-            binding.tvItemAlamat.text = quote.alamat
+
 
             binding.cvItemQuote.setOnClickListener{
                 //    val intent = Intent(activity, QuoteAddUpdateActivity::class.java)

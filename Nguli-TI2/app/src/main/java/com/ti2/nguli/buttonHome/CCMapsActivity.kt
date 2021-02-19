@@ -102,9 +102,10 @@ class CCMapsActivity : AppCompatActivity(), OnMapReadyCallback {
             override fun onPlaceSelected(place: Place) {
 
                    alamat = place.name.toString()
-                val intent = Intent(this@CCMapsActivity, ContentCategoryActivity::class.java)
+                val intent = Intent()
                 intent.putExtra(ContentCategoryActivity.EXTRA_LOCATION, alamat)
-                startActivity(intent)
+                setResult(helper.RESULT_ADD, intent)
+                finish()
              //   mapFragment?.getMapAsync(this@CCMapsActivity)
                 Log.i(TAG, "Place: ${place.name}, ${place.id}")
             }

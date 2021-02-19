@@ -55,14 +55,7 @@
                     android:textAlignment="textStart"
                     android:textSize="12sp" />
 
-                <TextView
-                    android:id="@+id/tv_item_alamat"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:maxLines="2"
-                    android:text="Alamat"
-                    android:textAlignment="textStart"
-                    android:textSize="14sp" />
+
 
 
             </LinearLayout>

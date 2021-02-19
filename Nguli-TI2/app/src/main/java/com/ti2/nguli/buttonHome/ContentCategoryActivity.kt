@@ -30,6 +30,11 @@ import com.ti2.nguli.databinding.ActivityContentCategoryBinding
 import com.ti2.nguli.databinding.ActivityMainBinding
 import com.ti2.nguli.databinding.ActivityVerifikasiPesananBinding
 import com.ti2.nguli.helper
+import com.ti2.nguli.helper.REQUEST_ADD
+import com.ti2.nguli.helper.REQUEST_UPDATE
+import com.ti2.nguli.helper.RESULT_ADD
+import com.ti2.nguli.helper.RESULT_DELETE
+import com.ti2.nguli.helper.RESULT_UPDATE
 import kotlinx.android.synthetic.main.activity_content_category.*
 import kotlinx.android.synthetic.main.activity_content_voucher.*
 
@@ -42,6 +47,7 @@ class ContentCategoryActivity : AppCompatActivity(), OnMapReadyCallback,
     private var identitas: CategoryContentData? = null
     private var position: Int = 0
     private var hargaTotal = 0;
+    private var alamat = "0";
 
 
     private lateinit var auth: FirebaseAuth
@@ -150,7 +156,7 @@ class ContentCategoryActivity : AppCompatActivity(), OnMapReadyCallback,
 
     override fun onMapClick(p0: LatLng?) {
         val intent = Intent(this, CCMapsActivity::class.java)
-        startActivity(intent)
+        startActivityForResult(intent, helper.REQUEST_ADD)
     }
 
     companion object {
@@ -167,7 +173,8 @@ class ContentCategoryActivity : AppCompatActivity(), OnMapReadyCallback,
         if (v?.id == R.id.btn_submit) {
             //val title = binding.edtTitle.text.toString().trim()
             //   val alamat = binding.edtAlamat.text.toString().trim()
-            val alamat = intent.getStringExtra(EXTRA_LOCATION).toString()
+
+            alamat = intent.getStringExtra(EXTRA_LOCATION).toString()
 
             if (alamat.isEmpty()) {
                 binding.edtAlamat.error = "Field can not be blank"
@@ -295,6 +302,19 @@ class ContentCategoryActivity : AppCompatActivity(), OnMapReadyCallback,
             .setNegativeButton("Tidak") { dialog, _ -> dialog.cancel() }
         val alertDialog = alertDialogBuilder.create()
         alertDialog.show()
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+       
+            when (requestCode) {
+                REQUEST_ADD -> if (resultCode == RESULT_ADD) {
+                     alamat = intent.getStringExtra(EXTRA_LOCATION).toString()
+
+                }
+
+            }
+
     }
 
 
